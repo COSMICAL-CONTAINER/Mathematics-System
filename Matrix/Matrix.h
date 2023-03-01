@@ -1,10 +1,41 @@
+/*
+ * Matrix.c 
+ *
+ * Copyright (c) 2023,Cosmical Container
+ * All rights reserved.
+ * 
+ * 文件名称：Matrix.h
+ * 摘    要：本文件主要是矩阵相关函数的声明
+ * 
+ * this file is created by Cosmical Container 
+ * who want to write a Mathematics system with C program.
+ * 
+ * thanks you for using it. 
+ * 
+ * 当前版本：1.0.1
+ * 作    者：寰宇体(Cosmical Container)
+ * 完成日期：2023年3月1日
+ * 
+ * 取代版本：1.0.0
+ * 原作者  ：寰宇体(Cosmical Container)
+ * 完成日期：2023年2月28日
+ */
 #ifndef _MARTRIX_H 
 #define _MARTRIX_H 
 
-#define Det_Max_n 10
+#define Check_NULL_Matrix_return(mat)         \
+    if ( mat == NULL )                        \
+    {                                         \
+        MatrixError("The matrix is NULL!");   \
+        return NULL;                          \
+    }
 
-#define Check_NULL_Matrix_return(mat)         if( mat == NULL ){Matrix_Error("The matrix is NULL!");return NULL;}
-#define Check_NULL_Matrix_exit(mat)           if( mat == NULL ){Matrix_Error("The matrix is NULL!");exit(-1);}
+#define Check_NULL_Matrix_exit(mat)           \
+    if ( mat == NULL )                        \
+    {                                         \
+        MatrixError("The matrix is NULL!");   \
+        exit(-1);                             \
+    }
 
 typedef struct 
 {
@@ -13,50 +44,54 @@ typedef struct
     float **data;
 }Matrix;
 
-// 矩阵的内存申请与释放函数
-void * Matrix_malloc(size_t _Size);
-void Matrix_free(void *_Memory);
+// 矩阵的内存申请函数
+void *MatrixMalloc(size_t _Size);
 
-void Matrix_Error(char * _Message);
+// 矩阵的内存释放函数
+void MatrixFree(void *_Memory);
+
+// 矩阵的报错信息
+void MatrixError(const char * _Message);
 
 // 创建矩阵
-Matrix *createMatrix(int row, int col);
+Matrix *CreateMatrix(int row, int col);
 
 // 创建单位矩阵
-Matrix *createUnitMatrix(int dimension);
+Matrix *CreateUnitMatrix(int dimension);
 
 // 初始化矩阵
-Matrix *matrix_init(Matrix * M, int arr[]);
+Matrix *InitMatrix(Matrix *mat, int arr[]);
 
 // 打印矩阵
-void printMatrix(Matrix * M);
+void PrintMatrix(Matrix *mat);
 
-// 释放矩阵
-void destroyMatrix(Matrix **mat);
+// 删除矩阵
+void DestroyMatrix(Matrix *mat);
 
 // 矩阵加法
-Matrix *matrix_add(Matrix *a, Matrix *b);
+Matrix *MatrixAdd(Matrix *mat1, Matrix *mat2);
 
 // 矩阵乘法 matrix multiplication
-Matrix *matrix_mul(Matrix *a, Matrix *b);
+Matrix *MatrixMul(Matrix *mat1, Matrix *mat2);
 
-// 矩阵数乘 matrix scalar multiplication
-Matrix *matrix_sca_mul(Matrix *M, float k);
+// 矩阵数乘 matrix number multiplication
+Matrix *MatrixNumMul(Matrix *mat, float k);
 
 // 矩阵数除
-Matrix *matrix_sca_div(Matrix *M, float k);
+Matrix *MatrixNumDiv(Matrix *mat, float k);
 
-// 计算行列式 Determinant
-float matrix_Det_Cal(Matrix *M);
-float matrix_Det(Matrix *M, int x);
+// 计算行列式(Determinant)
+float MatrixDetCalc(Matrix *mat);
+// 计算行列式(Determinant)中的递归函数
+float MatrixDet(Matrix *mat, int x);
 
 // 矩阵转置
-Matrix *matrix_transpose(Matrix *mat);
+Matrix *MatrixTranspose(Matrix *mat);
 
 // 矩阵求逆
-Matrix *matrix_inverse(Matrix *mat);
+Matrix *MatrixInverse(Matrix *mat);
 
 // 矩阵求秩
-int matrix_rank(Matrix* mat);
+int MatrixRankCalc(Matrix* mat);
 
-#endif _MARTRIX_H 
+#endif //_MARTRIX_H 
