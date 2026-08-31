@@ -377,7 +377,6 @@ int main()
     BigIntergeDiv(BigIntergeInit("114514121857865745231233456789"), BigIntergeInit("12345123125654564231236798"));
     putchar('\n');
     char a[100], b[100];
-    // 原版使用 gets(a); gets(b); —— gets 已被 C11 移除，这里用等价的 fgets 并去掉末尾换行
     fgets(a, sizeof(a), stdin); a[strcspn(a, "\n")] = '\0';
     fgets(b, sizeof(b), stdin); b[strcspn(b, "\n")] = '\0';
     P_BigInterge P1 = BigIntergeInit(a);
