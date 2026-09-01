@@ -15,10 +15,8 @@ void float_to_Fractional(double data_float, ll circle_body)
 {
     const static int pow_ten[] = {1,10,100,1000,10000,100000,1000000,10000000,100000000, 1000000000};
     //0.123,123 => 123/(1000 - 1);
-    //0.228,8   => 228.8 - 22.8   (1000x - 100x)  鐩鐨勬槸涓轰簡娑堥櫎鏃犻檺寰鐜灏忔暟
-    //寰鐜浣撶殑鏁板瓧涓鏁
+    //0.228,8   => 228.8 - 22.8   (1000x - 100x)
     int circle_body_count = 0;
-    //寰鐜灏忔暟鍓嶉潰涓嶅惊鐜鐨勬暟瀛楃殑涓鏁
     int float_front;
     ll circle_body_temp = circle_body;
 
@@ -63,7 +61,6 @@ void float_to_Fractional(double data_float, ll circle_body)
     float_front = 0;
     for(int j = 0; j < 10; ++j)
     {
-        //绗涓娆＄浉绛夋垜浠灏卞紑濮嬭板綍闀垮害
         if(float_num[j] == circle_num[0] && flag == false)
         {
             flag = true;
