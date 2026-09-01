@@ -18,3 +18,17 @@ gcc -std=c99 BigInterge/BigInterge.c BigInterge/string_math.c BigInterge/my_stri
 ```
 
 配套博文（含真实的运行输出与复盘）：[BigInterge 开发记：当 long long 装不下的时候](https://cosmical-container.github.io/posts/4d6809c9/)
+
+## Fraction
+
+分数运算库（2022 年 10-11 月）：`Fractional` 结构体构造即约分（递归 gcd +
+负号化归），四则运算用"相反数借还"和"倒数乘回"两个小技巧复用加法与乘法；
+`add/sub/mul/div(int n, ...)` 变参一次折叠 n 个分数；`float_to_Fractional`
+把循环小数精确转回分数（0.123123... = 41/333）。`my_malloc_temp` 记账池
+统一回收临时分数。`小数转分数.c` 是它的单文件调试前身，保留逐步打印。
+
+```sh
+gcc "Fraction/我的分数.c" -o fraction
+```
+
+配套博文（含真实的运行输出与复盘）：[我的分数开发记：手写一个分数运算库](https://cosmical-container.github.io/posts/2d141d28/)
